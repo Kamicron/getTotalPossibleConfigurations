@@ -10,7 +10,7 @@
 import { ref } from 'vue';
 
 const numberOfDices = ref<number>(12);
-const numberOfFace = ref<number>(6);
+const numberOfFace = ref<number>(8);
 const total = ref<number>(28);
 const resultat = ref<number>(0);
 const executionTime = ref<number>(0);
@@ -45,6 +45,7 @@ function getTotalPossibleConfigurations(total: number, numberOfDices: number, nu
   return res;
 }
 /*<===================== FUNCTION FOR 2 DICES*/
+
 console.log("====== START =====");
 
 const startTime = performance.now();
