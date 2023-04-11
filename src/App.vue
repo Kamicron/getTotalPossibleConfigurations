@@ -33,18 +33,66 @@ const executionTime = ref<number>(0);
 // }
 /*<===================== FUNCTION FOR 2 DICES*/
 
-/*>===================== V2: FUNCTION FOR x DICES*/
+/*>===================== V2: FUNCTION FOR X DICES*/
+// function getTotalPossibleConfigurations(total: number, numberOfDices: number, numberOfFace: number): number {
+//   let res = 0;
+//   if (numberOfDices === 0) {
+//     return total === 0 ? 1 : 0;
+//   }
+//   for (let faceDice = 1; faceDice <numberOfFace+1; faceDice++) {
+//       res += getTotalPossibleConfigurations(total - faceDice, numberOfDices-1, numberOfFace)
+//   }
+//   return res;
+// }
+/*<===================== FUNCTION FOR X DICES*/
+
+/*>===================== V3: FUNCTION FOR x DICES LESS CALC*/
 function getTotalPossibleConfigurations(total: number, numberOfDices: number, numberOfFace: number): number {
-  let res = 0;
-  if (numberOfDices === 0) {
-    return total === 0 ? 1 : 0;
+  function countCombinations(subTotal: number, subNumberOfDices: number, sum: number): number {
+    let res = 0;
+
+    if (subNumberOfDices === 0) {
+      return sum === 0 ? 1 : 0;
+    }
+
+    for (let face = 1; face <= numberOfFace; face++) {
+      if (sum - face >= 0) {
+        res += countCombinations(subTotal, subNumberOfDices - 1, sum - face);
+      }
+    }
+
+    return res;
   }
-  for (let faceDice = 1; faceDice <numberOfFace+1; faceDice++) {
-      res += getTotalPossibleConfigurations(total - faceDice, numberOfDices-1, numberOfFace)
-  }
-  return res;
+
+  return countCombinations(numberOfFace, numberOfDices, total);
 }
-/*<===================== FUNCTION FOR 2 DICES*/
+/*<===================== V3: FUNCTION FOR x DICES LESS CALC*/
+
+/*>===================== V4: FUNCTION FOR x DICES MEMOISATION*/
+// function getTotalPossibleConfigurations(total: number, numberOfDices: number, numberOfFace: number): number {
+//   const memo: {[key: string]:number} = {};
+//   function countCombinations(subTotal: number, subNumberOfDices: number, sum: number): number {
+//     let res = 0;
+
+//     if (subNumberOfDices === 0) {
+//       return sum === 0 ? 1 : 0;
+//     }
+
+//     const key = numberOfDices
+
+//     for (let face = 1; face <= numberOfFace; face++) {
+//       if (sum - face >= 0) {
+//         res += countCombinations(subTotal, subNumberOfDices - 1, sum - face);
+//       }
+//     }
+
+//     return res;
+//   }
+
+//   return countCombinations(numberOfFace, numberOfDices, total);
+// }
+/*<===================== V4: FUNCTION FOR x DICES MEMOISATION*/
+
 
 console.log("====== START =====");
 
