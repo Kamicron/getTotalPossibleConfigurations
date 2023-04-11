@@ -12,6 +12,8 @@ const numberOfFace = ref<number>(6);
 const total = ref<number>(7);
 const resultat = ref<number>(0);
 
+
+/*>===================== FUNCTION FOR 2 DICES*/
 function getTotalPossibleConfigurations(total: number, numberOfDices: number, numberOfFace: number): number {
   let res = 0;
 
@@ -28,6 +30,7 @@ function getTotalPossibleConfigurations(total: number, numberOfDices: number, nu
   }
   return res;
 }
+/*<===================== FUNCTION FOR 2 DICES*/
 
 resultat.value = getTotalPossibleConfigurations(7, numberOfDices.value, numberOfFace.value);
 
